@@ -44,7 +44,7 @@ _base	  = "";
 		_posmissionchurch = getPos _missionchurch;
 		_nfMarker	  = [_fMarkers, _posmissionchurch] call BIS_fnc_nearestPosition;
 		_nhMarker	  = [_hMarkers, _posmissionchurch] call BIS_fnc_nearestPosition;
-		if ((_posmissionchurch distance _posHQ > 800) && (getMarkerPos _nfMarker distance _posmissionchurch > 500)) exitWith {};
+		if ((_posmissionchurch distance _posHQ > 800) && (getMarkerPos _nfMarker distance _posmissionchurch > 500) && ((player distance _posmissionchurch) > 400)) exitWith {};
 	};
 
 	_clearspot = _posmissionchurch findEmptyPosition [10, 100, "I_Truck_02_covered_F"];
