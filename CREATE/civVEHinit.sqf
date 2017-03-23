@@ -1,6 +1,7 @@
 private ["_veh"];
 
 _veh = _this select 0;
+_veh setSpeedMode "LIMITED";
 
 if (_veh isKindOf "Car") then
 	{

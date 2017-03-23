@@ -3,7 +3,7 @@ if (!isServer and hasInterface) exitWith {};
 _tskTitle = localize "STR_TSK_DESfuel";
 _tskDesc  = localize "STR_TSKDESC_DESfuel";
 
-private ["_posbase", "_mrkfin", "_mrkTarget", "_tipoveh", "_heli", "_vehiculos", "_soldados", "_grupos", "_returntime", "_roads", "_road", "_vehicle", "_veh", "_TypeOfGroup", "_tsk", "_humo", "_emitterArray", "_poschurch", "_grupo", "_fuelstop", "_posfuelstop", "_fuelstops"];
+private ["_posbase", "_mrkfin", "_mrkTarget", "_tipoveh", "_range", "_vehiculos", "_soldados", "_grupos", "_returntime", "_roads", "_road", "_vehicle", "_veh", "_TypeOfGroup", "_tsk", "_humo", "_emitterArray", "_poschurch", "_grupo", "_fuelstop", "_posfuelstop", "_fuelstops"];
 
 
 _InitialMarker = _this select 0;
@@ -36,12 +36,12 @@ _base	  = "";
 	// finding location and making markers
 
 
-	_range = 1500;
+	_range = 1000;
 	while {true} do {
 		sleep 0.1;
 		while {true} do {
 			sleep 0.1;
-			_range	   = _range + 1000;
+			_range	   = _range + 5000;
 			_fuelstops = nearestTerrainObjects [_InitialPos, ["FUELSTATION"], _range];
 			if (count _fuelstops > 0) exitwith {};
 		};
@@ -119,7 +119,7 @@ _base	  = "";
 		{
 			_tsk = ["DES", [side_blue, civilian], [format [_tskDesc, _nearestbase, numberToDate [2035, _TimeLeft] select 3, numberToDate [2035, _TimeLeft] select 4, A3_Str_INDEP], _tskTitle, _mrkfin], _veh, "CREATED", 5, true, true, "Destroy"] call BIS_fnc_setTask;
 			hint "The fuel truck has arrived at the station.";
-			_returntime = (time + (600 + (random 300)));
+			_returntime = (time + (1800 + (random 600)));
 
 			waitUntil {sleep 5;
 				   (not alive _veh)or (dateToNumber date > _TimeLeft) or (time > _returntime)};

@@ -178,6 +178,7 @@ missionSelect = compile preProcessFileLineNumbers "Missions\missionSelect.sqf";
 PR_Brainwash = compile preProcessFileLineNumbers "Missions\PR_Brainwash.sqf";
 PR_Pamphlet = compile preProcessFileLineNumbers "Missions\PR_Pamphlet.sqf";
 DES_fuel = compile preProcessFileLineNumbers "Missions\DES_Fuel.sqf";
+ASS_forest = compile preProcessFileLineNumbers "Missions\AS_ForestPatrol.sqf";
 
 HQ_adds = compile preprocessFileLineNumbers "Compositions\HQ_adds.sqf";
 compNATORoadblock = compile preprocessFileLineNumbers "Compositions\cmpNATO_RB.sqf";

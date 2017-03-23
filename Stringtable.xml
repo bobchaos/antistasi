@@ -997,6 +997,14 @@
 				<Original>The enemy is buying fuel from the civilians to supply their war machine. The truck is leaving from %1 and will return there once it is full. We have a contact who will let us know when the truck is at the fuel station. Destroy the fuel truck to show the enemy and the population that we will not stand for collaboration.</Original>
 			</Key>
 
+			<Key ID="STR_TSK_ASFOREST">
+				<Original>Forest Patrol</Original>
+			</Key>
+			<Key ID="STR_TSKDESC_ASFOREST">
+				<Original>Reports have come in that a patrol is being dispatched from the %1 to this location. There will be a CSAT SpecOps ground team in the patrol training them in Forest warfare. Go there and assassinate them. Do this before %2:%3. </Original>
+			</Key>
+
+
 		</Container>
 	</Package>
 </Project>

@@ -326,7 +326,7 @@ if (_tipo == "PR") then {
 };
 
 if (_tipo == "ASS") then {
-	_sitios = ciudades - mrkFIA;
+	_sitios = ciudades + puestos - mrkFIA;
 	if (count _sitios > 0) then {
 		for "_i" from 0 to ((count _sitios) - 1) do {
 			_sitio = _sitios select _i;
@@ -342,7 +342,8 @@ if (_tipo == "ASS") then {
 	}
 	else {
 		_sitio = _posibles call BIS_fnc_selectRandom;
-		[_sitio, "civ"] remoteExec ["ASS_Traidor",HCgarrisons];
+		if (_sitio in ciudades) then {[_sitio, "civ"] remoteExec ["ASS_Traidor",HCgarrisons];};
+		if (_sitio in puestos) then {[_sitio, "civ"] remoteExec ["ASS_forest",HCgarrisons];};
 	};
 };
 

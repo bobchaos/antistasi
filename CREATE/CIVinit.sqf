@@ -3,6 +3,7 @@ private ["_unit","_enemigos"];
 _unit = _this select 0;
 
 _unit setSkill 0;
+_unit setSpeedMode "LIMITED";
 
 _EHkilledIdx = _unit addEventHandler ["killed", {
 	_muerto = _this select 0;

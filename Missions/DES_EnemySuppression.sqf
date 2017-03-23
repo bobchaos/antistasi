@@ -3,7 +3,7 @@ if (!isServer and hasInterface) exitWith {};
 _tskTitle = localize "STR_TSK_DESSuppression";
 _tskDesc  = localize "STR_TSKDESC_DESSuppression";
 
-private ["_poscrash", "_posbase", "_mrkfin", "_mrkTarget", "_tipoveh", "_heli", "_vehiculos", "_soldados", "_grupos", "_unit", "_roads", "_road", "_vehicle", "_veh", "_tipogrupo", "_tsk", "_humo", "_emitterArray", "_poschurch", "_grupo", "_missionchurch", "_posmissionchurch", "_group1", "_MRAP"];
+private ["_poscrash", "_posbase", "_mrkfin", "_mrkTarget", "_tipoveh", "_churches", "_vehiculos", "_soldados", "_grupos", "_unit", "_roads", "_road", "_vehicle", "_veh", "_tipogrupo", "_tsk", "_humo", "_emitterArray", "_poschurch", "_grupo", "_missionchurch", "_posmissionchurch", "_group1", "_MRAP"];
 
 
 _marcador   = _this select 0;
@@ -35,8 +35,13 @@ _base	  = "";
 	_nombreOrig = [_base] call AS_fnc_localizar;
 
 	// finding church and making markers
-
-	_churches = nearestTerrainObjects [_posicion, ["CHURCH", "CHAPEL"], 1500];
+_range = 1000;
+while {true} do {
+	sleep 0.1;
+	_range = _range + 500;
+	_churches = nearestTerrainObjects [_posicion, ["CHURCH", "CHAPEL"], _range];
+	if (count _churches > 0) exitwith {};
+};
 
 	while {true} do {
 		sleep 0.1;
@@ -44,7 +49,7 @@ _base	  = "";
 		_posmissionchurch = getPos _missionchurch;
 		_nfMarker	  = [_fMarkers, _posmissionchurch] call BIS_fnc_nearestPosition;
 		_nhMarker	  = [_hMarkers, _posmissionchurch] call BIS_fnc_nearestPosition;
-		if ((_posmissionchurch distance _posHQ > 800) && (getMarkerPos _nfMarker distance _posmissionchurch > 500) && ((player distance _posmissionchurch) > 400)) exitWith {};
+		if ((_posmissionchurch distance _posHQ > 750) && (getMarkerPos _nfMarker distance _posmissionchurch > 350) && ((player distance _posmissionchurch) > 350)) exitWith {};
 	};
 
 	_clearspot = _posmissionchurch findEmptyPosition [10, 100, "I_Truck_02_covered_F"];
