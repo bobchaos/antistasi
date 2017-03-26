@@ -18,9 +18,9 @@ if (isMultiplayer) then
 	while {showStatistics} do
 		{
 		waitUntil {sleep 0.5; player == player getVariable ["owner",player]};
-		if (player != stavros) then
+		if (player != Slowhand) then
 			{
-			if (isPlayer stavros) then {_nombreC = name stavros} else {_nombreC = "NONE"};
+			if (isPlayer Slowhand) then {_nombreC = name Slowhand} else {_nombreC = "NONE"};
 			if (activeBE) then {
 				_texto = format ["<t size='0.55'>" + "Commander: %3 | %2 | HR: %1 | Your Money: %4 € | %9 Support: %5 | %10 Support: %6 | %7 | %8", server getVariable "hr", player getVariable ["Rank_PBar", "Init"], _nombreC, player getVariable "dinero",server getVariable "PrestigeNATO", server getVariable "prestigeCSAT", server getVariable "BE_PBar", ["Overt", "<t color='#1DA81D'>Incognito</t>"] select (captive player), A3_Str_BLUE, A3_Str_RED];
 			} else {

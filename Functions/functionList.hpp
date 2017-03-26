@@ -59,6 +59,7 @@ class CfgFunctions {
 			class setupGearDB {};
 			class detectRHS {};
 			class detectACE {};
+			class moveObject {};
 		};
 		class server {
 			file = "Functions";
@@ -115,6 +116,8 @@ class CfgFunctions {
 			class initialiseFIAGarrisonUnit {};
 			class detectTFAR {};
 			class spawnBunker {};
+			class respawnRoadblock {};
+			class createPatrolMarker {};
 		};
 		class QRF {
 			file = "Functions";

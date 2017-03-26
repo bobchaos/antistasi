@@ -1,4 +1,4 @@
-if (player != Stavros) exitWith {hint "Only Commander Stavros has access to this function"};
+if (player != Slowhand) exitWith {hint "Only Commander Slowhand has access to this function"};
 
 // BE module
 _permission = true;

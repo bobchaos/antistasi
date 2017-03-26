@@ -27,7 +27,7 @@ _veh addEventHandler ["killed",{
 	}
 }];
 
-[_veh] spawn cleanserVeh;
+[_veh] spawn vehicleRemover;
 
 if ((count crew _veh) > 0) then
 	{

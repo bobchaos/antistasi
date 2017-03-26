@@ -170,7 +170,7 @@ else
 		};
 	};
 
-[_veh] spawn cleanserVeh;
+[_veh] spawn vehicleRemover;
 
 _veh addEventHandler ["Killed",{[_this select 0] remoteExec ["postmortem",2]}];
 

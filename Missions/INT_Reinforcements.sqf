@@ -42,11 +42,11 @@ waitUntil {sleep 1; (dateToNumber date > _endTime) or ({_x distance _posTarget <
 
 if ({_x distance _posTarget < 150} count _soldiers > 5) then {
 	_tsk = ["INT",[side_blue,civilian],[format [_tskDesc, A3_Str_INDEP, _targetName, _baseName],format [_tskTitle, A3_Str_INDEP],_target],_posTarget,"FAILED",5,true,true,"Destroy"] call BIS_fnc_setTask;
-	[-10, stavros] call playerScoreAdd;
+	[-10, Slowhand] call playerScoreAdd;
 	[5, 0, _posTarget] remoteExec ["AS_fnc_changeCitySupport", 2];
 } else {
 	_tsk = ["INT",[side_blue,civilian],[format [_tskDesc, A3_Str_INDEP, _targetName, _baseName],format [_tskTitle, A3_Str_INDEP],_target],_posTarget,"SUCCEEDED",5,true,true,"Destroy"] call BIS_fnc_setTask;
-	[10, stavros] call playerScoreAdd;
+	[10, Slowhand] call playerScoreAdd;
 	[0, 5, _posTarget] remoteExec ["AS_fnc_changeCitySupport", 2];
 };
 

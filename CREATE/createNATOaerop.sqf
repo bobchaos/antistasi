@@ -73,7 +73,7 @@ while {(spawner getVariable _marcador) and (_cuenta < _nVeh)} do
 	_cuenta = _cuenta + 1;
 	};
 
-{[_x] spawn cleanserVeh} forEach _vehiculos;
+{[_x] spawn vehicleRemover} forEach _vehiculos;
 
 _tipoGrupo = [bluSquad, side_blue] call AS_fnc_pickGroup;
 _grupo = [_posicion, side_blue, _tipoGrupo] call BIS_Fnc_spawnGroup;

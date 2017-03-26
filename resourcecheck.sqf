@@ -7,7 +7,7 @@ scriptName "resourcecheck";
 while {true} do
 	{
 	sleep 600;//600
-	if (isMultiplayer) then {waitUntil {sleep 10; isPlayer stavros}};
+	if (isMultiplayer) then {waitUntil {sleep 10; isPlayer Slowhand}};
 	_recAddOPFOR = 0;
 	_recAddBLUFOR = 25;//0
 	_hrAddBLUFOR = 0;//0
@@ -153,7 +153,7 @@ while {true} do
 			};
 		};
 	} forEach recursos;
-	//if (debug) then {stavros sideChat format ["AAF ha ganado %1 €\n FIA ha ganado %2 €\n Nivel de HR aumenta en %3", _recAddOPFOR,_recAddBLUFOR,_hrAddBLUFOR]};//AAF gana de inicio 7290 euros
+	//if (debug) then {Slowhand sideChat format ["AAF ha ganado %1 €\n FIA ha ganado %2 €\n Nivel de HR aumenta en %3", _recAddOPFOR,_recAddBLUFOR,_hrAddBLUFOR]};//AAF gana de inicio 7290 euros
 	if (server getVariable "easyMode") then {
 		_hrAddBLUFOR = _hrAddBLUFOR * 2;
 		_recAddBLUFOR = _recAddBLUFOR * 1.5;

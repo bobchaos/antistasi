@@ -1,4 +1,4 @@
-if (player != Stavros) exitWith {hint "Only Commander Stavros has access to this function"};
+if (player != Slowhand) exitWith {hint "Only Commander Slowhand has access to this function"};
 
 if ((count weaponCargo caja >0) or (count magazineCargo caja >0) or (count itemCargo caja >0) or (count backpackCargo caja >0)) exitWith {hint "You must first empty your Ammobox in order to move the HQ"};
 
@@ -9,7 +9,7 @@ petros forceSpeed -1;
 [[petros,"remove"],"AS_fnc_addActionMP"] call BIS_fnc_MP;
 //removeAllActions petros;
 //[true] remoteExecCall ["AS_fnc_togglePetrosAnim", 2];
-[petros] join stavros;
+[petros] join Slowhand;
 petros setBehaviour "AWARE";
 if (isMultiplayer) then
 	{

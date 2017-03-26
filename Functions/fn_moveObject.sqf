@@ -2,7 +2,7 @@ if (player != Slowhand) exitWith {hint localize "STR_INFO_MOVEASSETS_1"};
 if (vehicle player != player) exitWith {hint localize "STR_INFO_MOVEASSETS_2"};
 
 params ["_object", "_player", "_id", ["_category", ""]];
-private ["_position","_distance","_attachPoint","_bbr","_p1","_p2","_maxHeight","_checkAttachments"];
+private ["_position","_distance","_attachPoint","_bbr","_p1","_p2","_maxHeight","_checkAttachments","_actionParams"];
 
 _position = position petros;
 _distance = 30;
@@ -47,11 +47,9 @@ _checkAttachments = {
 waitUntil {sleep 1; (vehicle player != player) OR (player distance _position > _distance) OR !(alive player) OR !(isPlayer player) OR !(call _checkAttachments)};
 
 {detach _x} forEach attachedObjects player;
-
-_object addAction [localize "STR_ACT_MOVEASSET", "moveObject.sqf",nil,0,false,true,"","(_this == Slowhand)", 5];
-
+_actionParams = [[_this select 0,_this select 1,_this select 2,"static"], [_this select 0,_this select 1,_this select 2]] select (_category == "");
+_object addAction [localize "STR_ACT_MOVEASSET", {_actionParams spawn AS_fnc_moveObject},nil,0,false,true,"","(_this == Slowhand)", 5];
 _object setPosATL [getPosATL _object select 0,getPosATL _object select 1,0];
 
 if (vehicle player != player) exitWith {hint localize "STR_INFO_MOVEASSETS_2"};
-
-if  (player distance _position > _distance) exitWith {hint format [localize "STR_INFO_MOVEASSETS_4", _distance]};
+if (player distance _position > _distance) exitWith {hint format [localize "STR_INFO_MOVEASSETS_4", _distance]};

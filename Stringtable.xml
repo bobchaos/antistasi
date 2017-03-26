@@ -144,6 +144,12 @@
 			<Key ID="STR_GENIDENT_RES">
 				<Original>Resistence</Original>
 			</Key>
+			<Key ID="STR_GENIDENT_SOC">
+				<Original>SOCON</Original>
+			</Key>
+			<Key ID="STR_GENIDENT_SF">
+				<Original>Special Forces</Original>
+			</Key>
 		</Container>
 	</Package>
 
@@ -999,14 +1005,42 @@
 			<Key ID="STR_TSKDESC_DESfuel">
 				<Original>The enemy is buying fuel from the civilians to supply their war machine. The truck is leaving from %1 and will return there once it is full. We have a contact who will let us know when the truck is at the fuel station. Destroy the fuel truck to show the enemy and the population that we will not stand for collaboration.</Original>
 			</Key>
-      <Key ID="STR_TSK_ASFOREST">
+
+      		<Key ID="STR_TSK_ASFOREST">
 				<Original>Forest Patrol</Original>
 			</Key>
 			<Key ID="STR_TSKDESC_ASFOREST">
 				<Original>Reports have come in that a patrol is being dispatched from the %1 to this location. There will be a CSAT SpecOps ground team in the patrol training them in Forest warfare. We know they are patrolling within approximately 150 meters of this point. Go there and assassinate them. Do this before %2:%3. </Original>
 			</Key>
+
 			<Key ID="STR_TSK_RADIO_DESTROYED">
 				<Original>Radio Tower Destroyed</Original>
+			</Key>
+			<Key ID="STR_TSK_RB_DESTROYED">
+				<Original>Roadblock cleansed.</Original>
+			</Key>
+			<Key ID="STR_TSK_WP_DESTROYED">
+				<Original>Observation camp cleansed.</Original>
+			</Key>
+			<Key ID="STR_TSK_AAWP_DESTROYED">
+				<Original>%1 emplacement destroyed.</Original>
+			</Key>
+		</Container>
+	</Package>
+
+	<Package name="Information">
+		<Container name="Move Assets">
+			<Key ID="STR_INFO_MOVEASSETS_1">
+				<Original>Only the Commander may move assets.</Original>
+			</Key>
+			<Key ID="STR_INFO_MOVEASSETS_2">
+				<Original>You need to be on foot and not controlling AI to move assets.</Original>
+			</Key>
+			<Key ID="STR_INFO_MOVEASSETS_3">
+				<Original>This asset is too far from the zone.</Original>
+			</Key>
+			<Key ID="STR_INFO_MOVEASSETS_4">
+				<Original>You cannot move assets farther than %1m from the zone.</Original>
 			</Key>
 		</Container>
 	</Package>

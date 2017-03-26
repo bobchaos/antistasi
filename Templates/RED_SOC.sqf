@@ -78,4 +78,4 @@ OPFOR_marker_colour = "ColorWEST";
 OPFOR_marker_type = "flag_USA";
 
 // Name of the faction
-A3_Str_RED = localize "STR_GENIDENT_USMC";
+A3_Str_RED = localize "STR_GENIDENT_SOC";

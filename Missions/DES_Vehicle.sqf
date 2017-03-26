@@ -71,7 +71,7 @@ if (spawner getVariable _marcador) then
 		if (_tipoVeh == opSPAA) then {[3,3] remoteExec ["prestige",2]; [0,10,_posicion] remoteExec ["AS_fnc_changeCitySupport",2]} else {[0,5,_posicion] remoteExec ["AS_fnc_changeCitySupport",2]};
 		[1200] remoteExec ["AS_fnc_increaseAttackTimer",2];
 		{if (_x distance _veh < 500) then {[10,_x] call playerScoreAdd}} forEach (allPlayers - hcArray);
-		[5,stavros] call playerScoreAdd;
+		[5,Slowhand] call playerScoreAdd;
 		// BE module
 		if (activeBE) then {
 			["mis"] remoteExec ["fnc_BE_XP", 2];
@@ -86,7 +86,7 @@ if (dateToNumber date > _fechalimnum) then
 	[5,0,_posicion] remoteExec ["AS_fnc_changeCitySupport",2];
 	if (_tipoVeh == opSPAA) then {[0,-3] remoteExec ["prestige",2]};
 	[-600] remoteExec ["AS_fnc_increaseAttackTimer",2];
-	[-10,stavros] call playerScoreAdd;
+	[-10,Slowhand] call playerScoreAdd;
 	};
 
 [1200,_tsk] spawn borrarTask;

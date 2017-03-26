@@ -102,7 +102,7 @@ _scoreNeededAirBase = [0, 5] select (count (unlockedWeapons arrayIntersect genAA
 					};
 				};
 			};
-			//stavros globalChat format ["Marcador: %1. ScoreNeededLand: %2. ScoreLand: %3. ScoreNeededAir: %4. ScoreAir: %5",_objective,_scoreNeededLand,_scoreLand,_scoreNeededAir,_scoreAir]; sleep 5;
+			//Slowhand globalChat format ["Marcador: %1. ScoreNeededLand: %2. ScoreLand: %3. ScoreNeededAir: %4. ScoreAir: %5",_objective,_scoreNeededLand,_scoreLand,_scoreNeededAir,_scoreAir]; sleep 5;
 
 			if ((!(_base == "") or !(_airport == "")) and !(_easyTarget)) then {
 				_priority = 1;

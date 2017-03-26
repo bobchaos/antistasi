@@ -151,7 +151,7 @@ while {true} do {
 			_tsk = ["DES", [side_blue, civilian], [format [_tskDesc, _nombredest, numberToDate [2035, _fechalimnum] select 3, numberToDate [2035, _fechalimnum] select 4, A3_Str_INDEP], _tskTitle, _mrkfin], _missionchurch, "FAILED", 5, true, true, "Destroy"] call BIS_fnc_setTask;
 			[5, 0, _posicion] remoteExec ["AS_fnc_changeCitySupport", 2];
 			[-50] remoteExec ["AS_fnc_increaseAttackTimer", 2];
-			[-20, stavros] call playerScoreAdd;
+			[-20, Slowhand] call playerScoreAdd;
 		} else {
 			_tsk = ["DES", [side_blue, civilian], [format [_tskDesc, _nombredest, numberToDate [2035, _fechalimnum] select 3, numberToDate [2035, _fechalimnum] select 4, A3_Str_INDEP], _tskTitle, _mrkfin], _missionchurch, "SUCCEEDED", 5, true, true, "Destroy"] call BIS_fnc_setTask;
 			[3, 200] remoteExec ["resourcesFIA", 2];
@@ -159,7 +159,7 @@ while {true} do {
 			[_mrkchurch] remoteExec ["patrolCA", HCattack];
 
 			{if (isPlayer _x) then { [10, _x] call playerScoreAdd}} forEach ( [500, 0, _posicion, "BLUFORSpawn"] call distanceUnits);
-			 [10, stavros] call playerScoreAdd;
+			 [10, Slowhand] call playerScoreAdd;
 			 [2, 0] remoteExec ["prestige", 2];
 				// BE module
 			 if (activeBE) then {

@@ -93,7 +93,7 @@ call {
 	if (_menu isEqualTo "veh_mgmt") exitWith {
 		_index = NAV_BTNS find (ctrlIDC _idc);
 		_display displayCtrl (LINES select _index) ctrlShow true;
-		if (player == stavros) then {
+		if (player == Slowhand) then {
 			[ACT_BTNS_M4, [ACT_VEH_PGAR, ACT_VEH_UNLOCK, ACT_VEH_FGAR, ACT_VEH_SELL], VEH_TEXTS, VEH_TOOLTIPS] call _fnc_setup;
 		} else {
 			[ACT_BTNS_M4, [ACT_VEH_PGAR, ACT_VEH_UNLOCK], VEH_TEXTS, VEH_TOOLTIPS] call _fnc_setup;

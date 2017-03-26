@@ -181,4 +181,4 @@ BLUFOR_marker_colour = "ColorEAST";
 BLUFOR_marker_type = "flag_CSAT";
 
 // Name of the faction
-A3_Str_BLUE = localize "STR_GENIDENT_VMF";
+A3_Str_BLUE = localize "STR_GENIDENT_CSAT";

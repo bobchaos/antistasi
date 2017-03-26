@@ -390,14 +390,14 @@ if (_convoyType == "HVT") then {
 	if ((_hvt distance _posDestination < 100) or (dateToNumber date > _endTimeNumber)) then {
 		_tskOutcome = "FAILED";
 		[-1200] remoteExec ["AS_fnc_increaseAttackTimer", 2];
-		[-10,stavros] call playerScoreAdd;
+		[-10,Slowhand] call playerScoreAdd;
 	} else {
 		_tskOutcome = "SUCCEEDED";
 		[10,0] remoteExec ["prestige",2];
 		[0,5,_posDestination] remoteExec ["AS_fnc_changeCitySupport",2];
 		[1800] remoteExec ["AS_fnc_increaseAttackTimer",2];
 		{if (isPlayer _x) then {[10,_x] call playerScoreAdd}} forEach ([500,0,_hvt,"BLUFORSpawn"] call distanceUnits);
-		[5,stavros] call playerScoreAdd;
+		[5,Slowhand] call playerScoreAdd;
 		[position _hvt] spawn patrolCA;
 		// BE module
 		if (activeBE) then {
@@ -414,7 +414,7 @@ if (_convoyType == "Municion") then {
 	if ((_vehObj distance _posDestination < 100) or (dateToNumber date >_endTimeNumber)) then {
 		_tskOutcome = "FAILED";
 		[-1200] remoteExec ["AS_fnc_increaseAttackTimer",2];
-		[-10,stavros] call playerScoreAdd;
+		[-10,Slowhand] call playerScoreAdd;
 		clearMagazineCargoGlobal _vehObj;
 		clearWeaponCargoGlobal _vehObj;
 		clearItemCargoGlobal _vehObj;
@@ -424,7 +424,7 @@ if (_convoyType == "Municion") then {
 		[0,300] remoteExec ["resourcesFIA",2];
 		[1800] remoteExec ["AS_fnc_increaseAttackTimer",2];
 		{if (isPlayer _x) then {[10,_x] call playerScoreAdd}} forEach ([500,0,_vehObj,"BLUFORSpawn"] call distanceUnits);
-		[5,stavros] call playerScoreAdd;
+		[5,Slowhand] call playerScoreAdd;
 		[position _vehObj] spawn patrolCA;
 		// BE module
 		if (activeBE) then {
@@ -442,14 +442,14 @@ if (_convoyType == "Armor") then {
 		tanksAAFcurrent = tanksAAFcurrent + 1;
 		server setVariable [_destination,dateToNumber date,true];
 		[-1200] remoteExec ["AS_fnc_increaseAttackTimer",2];
-		[-10,stavros] call playerScoreAdd;
+		[-10,Slowhand] call playerScoreAdd;
 	} else {
 		_tskOutcome = "SUCCEEDED";
 		[5,0] remoteExec ["prestige",2];
 		[0,5,_posDestination] remoteExec ["AS_fnc_changeCitySupport",2];
 		[2700] remoteExec ["AS_fnc_increaseAttackTimer",2];
 		{if (isPlayer _x) then {[10,_x] call playerScoreAdd}} forEach ([500,0,_vehObj,"BLUFORSpawn"] call distanceUnits);
-		[5,stavros] call playerScoreAdd;
+		[5,Slowhand] call playerScoreAdd;
 		[position _vehObj] spawn patrolCA;
 		// BE module
 		if (activeBE) then {
@@ -467,7 +467,7 @@ if (_convoyType == "Prisoners") then {
 		{_x setCaptive false} forEach _POWs;
 		_counter = 2 * (count _POWs);
 		[_counter,0] remoteExec ["prestige",2];
-		[-10,stavros] call playerScoreAdd;
+		[-10,Slowhand] call playerScoreAdd;
 		};
 	if ((not alive driver _vehObj) or (driver _vehObj getVariable ["BLUFORSpawn",false])) then {
 		[position _vehObj] spawn patrolCA;
@@ -478,7 +478,7 @@ if (_convoyType == "Prisoners") then {
 			_tskOutcome = "FAILED";
 			_counter = 2 * (count _POWs);
 			[_counter,0] remoteExec ["prestige",2];
-			[-10,stavros] call playerScoreAdd;
+			[-10,Slowhand] call playerScoreAdd;
 		} else {
 			_tskOutcome = "SUCCEEDED";
 			_counter = {(alive _x) and (_x distance _posHQ < 150)} count _POWs;
@@ -489,7 +489,7 @@ if (_convoyType == "Prisoners") then {
 			[2*_counter,0] remoteExec ["prestige",2];
 			{[_x] join _groupPOW; [_x] orderGetin false} forEach _POWs;
 			{[_counter,_x] call playerScoreAdd} forEach (allPlayers - hcArray);
-			[round (_counter/2),stavros] call playerScoreAdd;
+			[round (_counter/2),Slowhand] call playerScoreAdd;
 			// BE module
 			if (activeBE) then {
 				["mis"] remoteExec ["fnc_BE_XP", 2];
@@ -509,7 +509,7 @@ if (_convoyType == "Money") then {
 			_resourcesAAF = _resourcesAAF + 5000;
 			server setVariable ["resourcesAAF",_resourcesAAF,true];
 			[-1200] remoteExec ["AS_fnc_increaseAttackTimer",2];
-			[-10,stavros] call playerScoreAdd;
+			[-10,Slowhand] call playerScoreAdd;
 		} else {
 			[position _vehObj] spawn patrolCA;
 			_resourcesAAF = server getVariable "resourcesAAF";
@@ -541,7 +541,7 @@ if (_convoyType == "Money") then {
 			[0,5000] remoteExec ["resourcesFIA",2];
 			[-1200] remoteExec ["AS_fnc_increaseAttackTimer",2];
 			{if (_x distance _vehObj < 500) then {[10,_x] call playerScoreAdd}} forEach (allPlayers - hcArray);
-			[5,stavros] call playerScoreAdd;
+			[5,Slowhand] call playerScoreAdd;
 			// BE module
 			if (activeBE) then {
 				["mis"] remoteExec ["fnc_BE_XP", 2];
@@ -563,7 +563,7 @@ if (_convoyType == "Supplies") then {
 		[position _vehObj] spawn patrolCA;
 		_tskOutcome = "FAILED";
 		[-5,0] remoteExec ["prestige",2];
-		[-10,stavros] call playerScoreAdd;
+		[-10,Slowhand] call playerScoreAdd;
 	};
 
 	if ((dateToNumber date > _endTimeNumber) or (_vehObj distance _posDestination < 100) or (driver _vehObj getVariable ["BLUFORSpawn",false])) then {
@@ -576,7 +576,7 @@ if (_convoyType == "Supplies") then {
 				[5,0] remoteExec ["prestige",2];
 				[0,15,_destination] remoteExec ["AS_fnc_changeCitySupport",2];
 				{if (_x distance _vehObj < 500) then {[10,_x] call playerScoreAdd}} forEach (allPlayers - hcArray);
-				[5,stavros] call playerScoreAdd;
+				[5,Slowhand] call playerScoreAdd;
 				// BE module
 				if (activeBE) then {
 					["mis"] remoteExec ["fnc_BE_XP", 2];
@@ -586,13 +586,13 @@ if (_convoyType == "Supplies") then {
 				_tskOutcome = "FAILED";
 				[5,-10,_destination] remoteExec ["AS_fnc_changeCitySupport",2];
 				[-5,0] remoteExec ["prestige",2];
-				[-10,stavros] call playerScoreAdd;
+				[-10,Slowhand] call playerScoreAdd;
 				};
 		} else {
 			_tskOutcome = "FAILED";
 			[2,0] remoteExec ["prestige",2];
 			[15,0,_destination] remoteExec ["AS_fnc_changeCitySupport",2];
-			[-10,stavros] call playerScoreAdd;
+			[-10,Slowhand] call playerScoreAdd;
 		};
 	};
 	reportedVehs = reportedVehs - [_vehObj];

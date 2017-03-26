@@ -1,5 +1,5 @@
 side_blue = independent;
-guer_respawn = "respawn_guerrila";
+guer_respawn = "respawn_guer";
 guer_marker_colour = "ColorGUER";
 guer_marker_type = "flag_FIA";
 guer_flag_texture = "\A3\Data_F\Flags\Flag_FIA_CO.paa";

@@ -23,3 +23,5 @@ safeDistance_garage = 100;
 safeDistance_recruit = 100;
 safeDistance_garrison = 100;
 safeDistance_fasttravel = 100;
+
+bld_smallBunker = "Land_BagBunker_01_small_green_F";

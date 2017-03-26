@@ -126,9 +126,9 @@ if (isMultiplayer) then
 	}
 else
 	{
-	stavros = player;
+	Slowhand = player;
 	grupo = group player;
-	grupo setGroupId ["Stavros","GroupColor4"];
+	grupo setGroupId ["Slowhand","GroupColor4"];
 	player setIdentity "protagonista";
 	player setUnitRank "COLONEL";
 	player hcSetGroup [group player];
@@ -143,7 +143,7 @@ player setVariable ["punish",0,true];
 player setVariable ["dinero",100,true];
 player setVariable ["BLUFORSpawn",true,true];
 player setVariable ["rango",rank player,true];
-if (player!=stavros) then {player setVariable ["score", 0,true]} else {player setVariable ["score", 25,true]};
+if (player!=Slowhand) then {player setVariable ["score", 0,true]} else {player setVariable ["score", 25,true]};
 rezagados = creategroup WEST;
 (group player) enableAttack false;
 if (!activeACE) then
@@ -222,7 +222,7 @@ player addEventHandler ["HandleHeal",
 player addEventHandler ["WeaponAssembled",{
 	params ["_EHunit", "_EHobj"];
 	if (_EHunit isKindOf "StaticWeapon") then {
-		_EHobj addAction [localize "Str_act_moveAsset", "moveObject.sqf","static",0,false,true,"","(_this == stavros)"];
+		_EHobj addAction [localize "STR_ACT_MOVEASSET", {[_this select 0,_this select 1,_this select 2,"static"] spawn AS_fnc_moveObject},nil,0,false,true,"","(_this == Slowhand)"];
 		if !(_EHunit in staticsToSave) then {
 			staticsToSave pushBack _EHunit;
 			publicVariable "staticsToSave";
@@ -416,7 +416,7 @@ if (_isJip) then
 		petros addAction [localize "Str_act_buildHQ", {[] spawn buildHQ},nil,0,false,true];
 		};
 
-	if ((player == stavros) and (isNil "placementDone") and (isMultiplayer)) then {
+	if ((player == Slowhand) and (isNil "placementDone") and (isMultiplayer)) then {
 		[] execVM "UI\startMenu.sqf";
 	} else {
 		[true] execVM "Dialogs\firstLoad.sqf";
@@ -425,8 +425,8 @@ if (_isJip) then
 }
 else {
 	if (isNil "placementDone") then {
-		waitUntil {!isNil "stavros"};
-		if (player == stavros) then {
+		waitUntil {!isNil "Slowhand"};
+		if (player == Slowhand) then {
 		    if (isMultiplayer) then {
 		    	HC_comandante synchronizeObjectsAdd [player];
 				player synchronizeObjectsAdd [HC_comandante];
@@ -495,8 +495,8 @@ if !(isMultiplayer) then {
 };
 
 caja addAction [localize "STR_ACT_UNLOADCARGO", "[] call vaciar"];
-caja addAction [localize "STR_ACT_MOVEASSET", "moveObject.sqf",nil,0,false,true,"","(_this == stavros)"];
-//caja addAction [localize "STR_ACT_SELLMENU", "UI\sellMenu.sqf",nil,0,false,true,"","(_this == stavros)", 5];
+caja addAction [localize "STR_ACT_MOVEASSET", {[_this select 0,_this select 1,_this select 2] spawn AS_fnc_moveObject},nil,0,false,true,"","(_this == Slowhand)"];
+//caja addAction [localize "STR_ACT_SELLMENU", "UI\sellMenu.sqf",nil,0,false,true,"","(_this == Slowhand)", 5];
 
 [player] execVM "OrgPlayers\unitTraits.sqf";
 [player] call cleanGear;

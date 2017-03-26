@@ -59,7 +59,7 @@ if (!isNil "_weaponsItemsCargo") then
 					if (count _cosa > 0) then
 						{
 						_subCosa = _cosa select 0;
-						if (!isNil "_subCosa") then {_municion pushBack _subCosa; stavros sidechat format ["%1,%2",_municion,_subCosa];} else {diag_log format ["Error transfering ammo on %1",_cosa]};
+						if (!isNil "_subCosa") then {_municion pushBack _subCosa; Slowhand sidechat format ["%1,%2",_municion,_subCosa];} else {diag_log format ["Error transfering ammo on %1",_cosa]};
 						};
 					};
 				}

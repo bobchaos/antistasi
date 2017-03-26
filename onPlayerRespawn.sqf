@@ -41,7 +41,7 @@ _nuevo setVariable ["rango",_rango,true];
 //if (!activeACEMedical) then {[_nuevo] call initRevive};
 disableUserInput false;
 //_nuevo enableSimulation true;
-if (_viejo == stavros) then
+if (_viejo == Slowhand) then
 	{
 	[_nuevo] call stavrosInit;
 	};
@@ -145,7 +145,7 @@ player addEventHandler ["HandleHeal",
 player addEventHandler ["WeaponAssembled",{
 	params ["_EHunit", "_EHobj"];
 	if (_EHunit isKindOf "StaticWeapon") then {
-		_EHobj addAction [localize "Str_act_moveAsset", "moveObject.sqf","static",0,false,true,"","(_this == stavros)"];
+		_EHobj addAction [localize "Str_act_moveAsset", {[_this select 0,_this select 1,_this select 2,"static"] spawn AS_fnc_moveObject},nil,0,false,true,"","(_this == Slowhand)"];
 		if !(_EHunit in staticsToSave) then {
 			staticsToSave pushBack _EHunit;
 			publicVariable "staticsToSave";

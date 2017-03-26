@@ -470,7 +470,7 @@ diag_log format ["Attack finished. Target: %1", _mrkDestino];
 if (not(_mrkDestino in mrkAAF)) then
 	{
 	{if (isPlayer _x) then {[10,_x] call playerScoreAdd}} forEach ([500,0,_posdestino,"BLUFORSpawn"] call distanceUnits);
-	[5,stavros] call playerScoreAdd;
+	[5,Slowhand] call playerScoreAdd;
 	if (!_CSAT) then
 		{
 		_tsk = ["AtaqueAAF",[side_blue,civilian],[format ["AAF Is attacking from %1. Intercept them or we may loose a sector",_nombreorig],"AAF Attack",_markTsk],getMarkerPos _markTsk,"SUCCEEDED",10,true,true,"Defend"] call BIS_fnc_setTask;
@@ -484,7 +484,7 @@ if (not(_mrkDestino in mrkAAF)) then
 	}
 else
 	{
-	[-10,stavros] call playerScoreAdd;
+	[-10,Slowhand] call playerScoreAdd;
 	if (!_CSAT) then
 		{
 		_tsk = ["AtaqueAAF",[side_blue,civilian],[format ["AAF Is attacking from %1. Intercept them or we may loose a sector",_nombreorig],"AAF Attack",_markTsk],getMarkerPos _markTsk,"FAILED",10,true,true,"Defend"] call BIS_fnc_setTask;

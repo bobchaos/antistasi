@@ -64,11 +64,14 @@ if !(count controles > 0) then {
             if (toLower _x find "puerto" >= 0) exitWith {puertos pushBackUnique _x};
         };
     } forEach _allMarkers;
+
+    puestos = puestos + puestosAA;
+    puestos = puestos arrayIntersect puestos;
 };
 
 mrkFIA = ["FIA_HQ"];
 garrison setVariable ["FIA_HQ",[],true];
-marcadores = power + bases + aeropuertos + recursos + fabricas + puestos + puertos + controles + colinasAA + puestosAA + ["FIA_HQ"];
+marcadores = power + bases + aeropuertos + recursos + fabricas + puestos + puertos + controles + colinas + colinasAA + puestosAA + ["FIA_HQ"];
 
 // Make sure all markers are invisible and not currently marked as having been spawned in.
 {_x setMarkerAlpha 0;
@@ -139,22 +142,17 @@ marcadores = power + bases + aeropuertos + recursos + fabricas + puestos + puert
         _pos = getPos _x;
         if (_size < 10) then {_size = 50};
 
+        _mrk = createmarker [format ["%1", _name], _pos];
+        _mrk setMarkerSize [_size, _size];
+        _mrk setMarkerShape "ELLIPSE";
+        _mrk setMarkerBrush "SOLID";
+        _mrk setMarkerColor "ColorRed";
+        _mrk setMarkerText _name;
         colinas pushBack _name;
+        spawner setVariable [_name,false,true];
+        _mrk setMarkerAlpha 0;
     };
 } foreach (nearestLocations [getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition"), ["Hill"], worldSize/1.414]);
-
-{
-    _mrk = createmarker [format ["%1", _x], _pos];
-    _mrk setMarkerSize [_size, _size];
-    _mrk setMarkerShape "ELLIPSE";
-    _mrk setMarkerBrush "SOLID";
-    _mrk setMarkerColor "ColorRed";
-    _mrk setMarkerText _x;
-    spawner setVariable [_x,false,true];
-    _mrk setMarkerAlpha 0;
-} forEach colinas;
-
-colinas = colinas - (colinas arrayIntersect colinasAA);
 
 marcadores = marcadores + colinas + ciudades;
 

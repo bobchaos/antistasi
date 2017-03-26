@@ -483,6 +483,7 @@ AAmissile = 	"Titan_AA";
 
 // NVG, flashlight, laser, mine types
 indNVG = 		"NVGoggles_INDEP";
+indRF = 		"Rangefinder";
 indFL = 		"acc_flashlight";
 indLaser = 		"acc_pointer_IR";
 atMine = 		"ATMine_Range_Mag";
@@ -504,7 +505,7 @@ civHeli = "C_Heli_Light_01_civil_F";
 campCrate = 		"Box_NATO_Equip_F";
 
 // Name of the faction
-A3_Str_INDEP = localize "STR_GENIDENT_USAF";
+A3_Str_INDEP = localize "STR_GENIDENT_NATO";
 
 // Colour of this faction's markers
 IND_marker_colour = "ColorWEST";

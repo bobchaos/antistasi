@@ -8,7 +8,7 @@ _skillFIA = server getVariable ["skillFIA", 1];
 
 _unit allowFleeing 0;
 _skill = 0.2 + (_skillFIA * 0.025);
-if ((!isMultiplayer) and (leader _unit == stavros)) then {_skill = _skill + 0.2};
+if ((!isMultiplayer) and (leader _unit == Slowhand)) then {_skill = _skill + 0.2};
 _unit setSkill _skill;
 
 _aiming = _skill;
@@ -170,7 +170,7 @@ call {
 		if (activeAFRF) then {
 			_unit removeMagazines (currentMagazine _unit);
 			_unit removeWeaponGlobal (primaryWeapon _unit);
-			[_unit, selectRandom guer_gear_SNPR, 6, 0] call BIS_fnc_addWeapon;
+			[_unit, guer_gear_SNPR, 6, 0] call BIS_fnc_addWeapon;
 		};
 		if ((gear_sniperRifles arrayIntersect unlockedWeapons) > 0) then {
 			_unit removeMagazines (currentMagazine _unit);
@@ -184,7 +184,7 @@ call {
 		if (activeAFRF) then {
 			_unit removeMagazines (currentMagazine _unit);
 			_unit removeWeaponGlobal (primaryWeapon _unit);
-			[_unit, selectRandom guer_gear_SNPR_camo, 6, 0] call BIS_fnc_addWeapon;
+			[_unit, guer_gear_SNPR_camo, 6, 0] call BIS_fnc_addWeapon;
 		};
 		_skillSet = 6;
 	};

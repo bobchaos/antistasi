@@ -133,7 +133,7 @@ _base	  = "";
 					[-10, 10, _marcador] remoteExec ["AS_fnc_changeCitySupport", 2];
 					[5, 0] remoteExec ["prestige", 2];
 					{if (_x distance _veh < 1500) then { [10, _x] call playerScoreAdd}} forEach (allPlayers - hcArray);
-					 [5, stavros] call playerScoreAdd;
+					 [5, Slowhand] call playerScoreAdd;
 						// BE module
 					 if (activeBE) then { ["mis"] remoteExec ["fnc_BE_XP", 2]};
 					};
@@ -158,7 +158,7 @@ _base	  = "";
 							_tsk = ["DES", [side_blue, civilian], [format [_tskDesc, _nearestbase, numberToDate [2035, _TimeLeft] select 3, numberToDate [2035, _TimeLeft] select 4, A3_Str_INDEP], _tskTitle, _mrkfin], _fuelstop, "SUCCEEDED", 5, true, true, "Destroy"] call BIS_fnc_setTask;
 							[-10, 10, _marcador] remoteExec ["AS_fnc_changeCitySupport", 2];
 							{if (_x distance _veh < 1500) then { [10, _x] call playerScoreAdd}} forEach (allPlayers - hcArray);
-							 [5, stavros] call playerScoreAdd;
+							 [5, Slowhand] call playerScoreAdd;
 								// BE module
 							 if (activeBE) then { ["mis"] remoteExec ["fnc_BE_XP", 2]};
 							};
