@@ -2,6 +2,8 @@ call compile preprocessFileLineNumbers "Compositions\FIA_RB.sqf";
 call compile preprocessFileLineNumbers "scripts\Init_UPSMON.sqf";
 call compile preprocessFileLineNumbers "Lists\gearList.sqf";
 
+// I'm shitting all over this code
+
 minefieldAAF = compile preProcessFileLineNumbers "CREATE\minefieldAAF.sqf";
 tempMoveMrk = compile preProcessFileLineNumbers "tempMoveMrk.sqf";
 hasRadio = compile preProcessFileLineNumbers "AI\hasRadio.sqf";
