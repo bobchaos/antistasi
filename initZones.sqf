@@ -90,7 +90,7 @@ marcadores = power + bases + aeropuertos + recursos + fabricas + puestos + puert
 
 // Detect cities, set their population to the number of houses within their city limits, create a database of roads, set number of civilian vehicles to spawn with regards to number of roads. Pre-defined for Altis.
 {
-    _name = text _x splitString " " joinString "";
+    _name = [text _x, true] call AS_fnc_location;
     if ((_name != "") and !(_name in _blackList)) then {
         _sizeX = getNumber (configFile >> "CfgWorlds" >> worldName >> "Names" >> (text _x) >> "radiusA");
         _sizeY = getNumber (configFile >> "CfgWorlds" >> worldName >> "Names" >> (text _x) >> "radiusB");

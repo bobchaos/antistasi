@@ -5,12 +5,12 @@ If you wish to add more soldiers beyond the available variables, you also need t
 Note: all classes marked as "extra" do not have a unique class in this template. They are, however, part of other templates and are therfore included in all templates.
 */
 sol_A_AA = 	"rhsusf_usmc_marpat_wd_stinger"; // Assistant AA (extra)
-sol_A_AR = 	"rhsusf_army_ucp_autoriflemana"; // Assistant autorifle
+sol_A_AR = 	"rhsusf_usmc_marpat_wd_machinegunner_ass"; // Assistant autorifle
 sol_A_AT = 	"rhsusf_usmc_marpat_wd_javelin_assistant"; // Assistant AT
 sol_AA = 	"rhsusf_usmc_marpat_wd_stinger"; // AA
 sol_AR = 	"rhsusf_usmc_marpat_wd_autorifleman_m249"; // Autorifle
 sol_AT = 	"rhsusf_usmc_marpat_wd_javelin"; // AT
-sol_AMMO = 	"rhsusf_usmc_marpat_wd_autorifleman_m249_ass"; // Ammo bearer (extra)
+sol_AMMO = 	"rhsusf_usmc_marpat_wd_machinegunner_ass"; // Ammo bearer (extra)
 sol_GL = 	"rhsusf_usmc_marpat_wd_grenadier"; // Grenade launcher
 sol_GL2 = 	"rhsusf_usmc_marpat_wd_grenadier_m32"; // Grenade launcher
 sol_LAT = 	"rhsusf_usmc_marpat_wd_smaw"; // Light AT
@@ -27,7 +27,7 @@ sol_UN = 	"rhsusf_usmc_marpat_wd_helicrew"; // Unarmed (extra)
 sol_RFL = 	"rhsusf_usmc_marpat_wd_rifleman"; // Rifleman
 sol_SN = 	"rhsusf_usmc_marpat_wd_sniper"; // Sniper
 sol_SP = 	"rhsusf_usmc_marpat_wd_spotter"; // Spotter
-sol_MED = 	"rhsusf_navy_sarc_w"; // Medic
+sol_MED = 	"rhsusf_navy_marpat_wd_medic"; // Medic
 sol_ENG = 	"rhsusf_usmc_marpat_wd_engineer"; // Engineer
 sol_OFF = 	"rhsusf_usmc_marpat_wd_officer"; // Officer
 sol_OFF2 = 	"rhsusf_usmc_marpat_wd_officer"; // Officer
@@ -471,4 +471,9 @@ if (worldname == "Tanoa") then {
     "U_I_C_Soldier_Bandit_4_F",
     "U_I_C_Soldier_Bandit_5_F"
     ];
+
+	// infPatrol = infPatrol + [(configfile >> "CfgGroups" >> "West" >> "Gendarmerie" >> "Infantry" >> "GENDARME_Inf_Patrol")]
+
+	// vehPatrol = vehPatrol + ["B_GEN_Offroad_01_gen_F"]
+
 };

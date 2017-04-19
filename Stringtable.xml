@@ -165,6 +165,12 @@
 			<Key ID="STR_GENIDENT_BW">
 				<Original>Bundeswehr</Original>
 			</Key>
+			<Key ID="STR_GENIDENT_RoyMar">
+				<Original>Royal Marines</Original>
+			</Key>
+			<Key ID="STR_GENIDENT_SAS">
+				<Original>SAS</Original>
+			</Key>
 		</Container>
 	</Package>
 

@@ -335,6 +335,7 @@ unlockedMagazines = [
 	"rhsgref_20rnd_765x17_vz61"
 
 ];
+};
 
 unlockedItems = [
 	"Binocular",
@@ -448,7 +449,7 @@ apMine_placed = "rhs_mine_pmn2";
 apMine_type = 	"rhs_mine_pmn2_ammo";
 
 // The flag
-cFlag = "BWA3_Flag_Ger_F";
+cFlag = "FlagCarrierBAF";
 
 // Affiliation
 side_green = 	west;
@@ -466,10 +467,10 @@ campCrate = "Box_NATO_Equip_F";
 IND_marker_colour = "ColorWEST";
 
 // Type of this faction's markers
-IND_marker_type = "flag_Germany";
+IND_marker_type = "flag_UK";
 
 // Name of the faction
-A3_Str_INDEP = localize "STR_GENIDENT_BW";
+A3_Str_INDEP = localize "STR_GENIDENT_RoyMar";
 
 if (worldname == "Tanoa") then {
     unlockedItems = unlockedItems + [
@@ -485,4 +486,7 @@ if (worldname == "Tanoa") then {
     "U_I_C_Soldier_Bandit_4_F",
     "U_I_C_Soldier_Bandit_5_F"
     ];
+	// infPatrol = infPatrol + [(configfile >> "CfgGroups" >> "West" >> "Gendarmerie" >> "Infantry" >> "GENDARME_Inf_Patrol")]
+
+	// vehPatrol = vehPatrol + ["B_GEN_Offroad_01_gen_F"]
 };

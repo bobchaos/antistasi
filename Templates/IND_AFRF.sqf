@@ -68,13 +68,17 @@ infList_pilots = 	[sol_HPIL, sol_HPIL2, sol_PIL];
 // Vehicles
 vehTrucks = 		["rhs_kamaz5350_open_vdv","rhs_kamaz5350_vdv","RHS_Ural_Open_VDV_01","RHS_Ural_VDV_01"]; // trucks that spawn at outposts, etc
 vehPatrol =			["rhs_tigr_m_vdv","RHS_Mi8mt_vvsc"]; // vehicles used for road patrols;
+if (activeGREF) then {vehPatrol = vehPatrol + ["rhsgref_BRDM2_HQ_vdv"];};
 vehAPC = 			["rhs_btr80_vdv"]; // APCs
 vehIFV = 			["rhs_bmp2d_vdv","rhs_bmp1p_vdv","rhs_bmd2m","rhs_bmd2k"]; // IFVs
 vehTank = 			["rhs_t72bb_tv","rhs_t72bd_tv","rhs_t90a_tv"]; // MBTs
 vehSupply = 		["rhs_gaz66_ammo_vdv","RHS_Ural_Fuel_VDV_01","rhs_gaz66_repair_vdv","rhs_gaz66_ap2_vdv"]; // supply vehicles (ammo, fuel, med)
 vehAmmo = 			"rhs_gaz66_ammo_vdv"; // ammo truck, for special missions
 vehFuel = 			["RHS_Ural_Fuel_VDV_01"]; // fuel truck for missions
-vehLead = 			["rhs_tigr_sts_3camo_vdv"]; // lead vehicle for convoys, preferably armed MRAP/car
+if (activeGREF) then {
+vehLead = 			["rhsgref_BRDM2_vdv"];// lead vehicle for convoys, preferably armed MRAP/car
+} else {
+vehLead = 			["rhs_tigr_sts_3camo_vdv"];};
 standardMRAP = 		["rhs_tigr_vdv","rhs_uaz_vdv"]; // default transport MRAP/car
 vehTruckBox = 		["rhs_gaz66_repair_vdv"]; // repair truck or at least a prop
 vehPatrolBoat = 	["I_Boat_Armed_01_minigun_F"];
@@ -463,6 +467,22 @@ unlockedBackpacks = [
 
 unlockedOptics = [];
 
+if (worldname == "Tanoa") then {
+    unlockedItems = unlockedItems + [
+    "U_I_C_Soldier_Para_5_F",
+    "U_I_C_Soldier_Para_4_F",
+    "U_I_C_Soldier_Para_3_F",
+    "U_I_C_Soldier_Para_2_F",
+    "U_I_C_Soldier_Para_1_F",
+    "U_I_C_Soldier_Para_1_F",
+    "U_I_C_Soldier_Bandit_1_F",
+    "U_I_C_Soldier_Bandit_2_F",
+    "U_I_C_Soldier_Bandit_3_F",
+    "U_I_C_Soldier_Bandit_4_F",
+    "U_I_C_Soldier_Bandit_5_F"
+    ];
+};
+
 // Default rifle types, required to unlock specific unit types. Unfortunatly, not all mods classify their weapons the same way, so automatic detection doesn't work reliably enough.
 gear_machineGuns = gear_machineGuns + ["rhs_weap_pkp","rhs_weap_pkm"];
 gear_machineGuns = gear_machineGuns arrayIntersect gear_machineGuns;
@@ -521,19 +541,3 @@ IND_marker_colour = "ColorGUER";
 
 // Type of this faction's markers
 IND_marker_type = "rhs_flag_vdv";
-
-if (worldname == "Tanoa") then {
-    unlockedItems = unlockedItems + [
-    "U_I_C_Soldier_Para_5_F",
-    "U_I_C_Soldier_Para_4_F",
-    "U_I_C_Soldier_Para_3_F",
-    "U_I_C_Soldier_Para_2_F",
-    "U_I_C_Soldier_Para_1_F",
-    "U_I_C_Soldier_Para_1_F",
-    "U_I_C_Soldier_Bandit_1_F",
-    "U_I_C_Soldier_Bandit_2_F",
-    "U_I_C_Soldier_Bandit_3_F",
-    "U_I_C_Soldier_Bandit_4_F",
-    "U_I_C_Soldier_Bandit_5_F"
-    ];
-};

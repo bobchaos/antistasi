@@ -15,7 +15,8 @@ opHeliSD = 			"UK3CB_BAF_Wildcat_HMA2_TRN_8A_DPMT"; // PO-30 Orca (Armed)
 opGunship = 		"UK3CB_BAF_Apache_AH1_JS_DPMT"; // Mi-48 Kajman
 
 // CAS, fixed-wing
-opCASFW = 			["heeresflieger_1"]; // To-199 Neophron (CAS)
+opCASFW = 			["CUP_B_F35B_CAS_BAF"]; // To-199 Neophron (CAS)
+
 
 // small UAV (Darter, etc)
 opUAVsmall = 		"B_UAV_01_F"; // Tayran AR-2
@@ -38,7 +39,7 @@ opArtilleryAmmoHE = "32Rnd_155mm_Mo_shells";
 // infantry classes, to allow for class-specific skill adjustments and pricing
 opI_OFF = 	"UK3CB_BAF_Officer_MTP_RM"; // officer/official
 opI_PIL = 	"UK3CB_BAF_Pilot_RN"; // pilot
-opI_OFF2 = 	"UK3CB_BAF_SC_MTP_BPT_RM"; // officer/traitor
+opI_OFF2 = 	"B_G_Soldier_unarmed_F"; // officer/traitor
 opI_CREW = 	"UK3CB_BAF_Crewman_MTP_RM"; // crew
 opI_MK = 	"UK3CB_BAF_Marksman_MTP_BPT_RM_H";
 opI_MED =	"UK3CB_BAF_Medic_MTP_BPT_RM_H";
@@ -79,4 +80,4 @@ OPFOR_marker_colour = "ColorWEST";
 OPFOR_marker_type = "flag_UK";
 
 // Name of the faction
-A3_Str_RED = localize "STR_GENIDENT_KSK";
+A3_Str_RED = localize "STR_GENIDENT_SAS";

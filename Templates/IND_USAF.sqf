@@ -286,6 +286,8 @@ if (activeGREF) then {
 	"rhs_weap_m38"
 ];
 
+};
+
 // Standard rifles for AI are picked from this array. Add only rifles.
 unlockedRifles = [
 	"rhs_weap_pp2000",
@@ -436,3 +438,24 @@ IND_marker_type = "rhs_flag_USA";
 
 // Name of the faction
 A3_Str_INDEP = localize "STR_GENIDENT_USAF";
+
+if (worldname == "Tanoa") then {
+    unlockedItems = unlockedItems + [
+    "U_I_C_Soldier_Para_5_F",
+    "U_I_C_Soldier_Para_4_F",
+    "U_I_C_Soldier_Para_3_F",
+    "U_I_C_Soldier_Para_2_F",
+    "U_I_C_Soldier_Para_1_F",
+    "U_I_C_Soldier_Para_1_F",
+    "U_I_C_Soldier_Bandit_1_F",
+    "U_I_C_Soldier_Bandit_2_F",
+    "U_I_C_Soldier_Bandit_3_F",
+    "U_I_C_Soldier_Bandit_4_F",
+    "U_I_C_Soldier_Bandit_5_F"
+    ];
+
+	// infPatrol = infPatrol + [(configfile >> "CfgGroups" >> "West" >> "Gendarmerie" >> "Infantry" >> "GENDARME_Inf_Patrol")]
+
+	// vehPatrol = vehPatrol + ["B_GEN_Offroad_01_gen_F"]
+
+};
