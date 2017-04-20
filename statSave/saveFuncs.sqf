@@ -371,7 +371,6 @@ fn_setData = {
 			if(_varName == 'addObjectsHQ') exitWith {
 				if (count _varvalue == 0) exitWith {};
 				{
-					diag_log _x;
 					_obj = (_x select 0) createVehicle [0,0,0];
 					_obj setDir (_x select 2);
 					_obj setPosATL (_x select 1);
@@ -422,6 +421,7 @@ fn_setData = {
 				_secondPart = _varvalue select [18,10];
 
 				_fullArray = _firstPart + _secondPart;
+				_fullArray set [26,_varvalue select 26];
 				jna_dataList = +_fullArray;
 			};
 		};
