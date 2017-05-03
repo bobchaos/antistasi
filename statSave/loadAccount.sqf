@@ -20,11 +20,8 @@ if (!isDedicated) then {
 			["vestPlayer"] call fn_LoadStat;
 			["outfit"] call fn_LoadStat;
 			["hat"] call fn_LoadStat;
-
-			if ([player] call isMember) then {
-				["scorePlayer"] call fn_LoadStat;
-				["rankPlayer"] call fn_LoadStat;
-			};
+			["scorePlayer"] call fn_LoadStat;
+			["rankPlayer"] call fn_LoadStat;
 			["dinero"] call fn_LoadStat;
 			["personalGarage"] call fn_LoadStat;
 			diag_log "Antistasi MP: Personal player stats loaded";
