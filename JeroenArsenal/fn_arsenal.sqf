@@ -1,3 +1,15 @@
+/*
+    By: Jeroen Notenbomer
+
+	overwrites default arsenal script, original arsenal needs to be running first in order to initilize the display.
+
+    fuctions:
+    ["Preload"] call jna_fnc_arsenal;
+    	preloads the arsenal like the default arsenal but it doesnt have "BIS_fnc_endLoadingScreen" so you dont have errors
+    ["customInit", "arsanalDisplay"] call jna_fnc_arsenal;
+    	overwrites all functions in the arsenal with JNA ones.
+*/
+
 
 #include "\A3\ui_f\hpp\defineDIKCodes.inc"
 #include "\A3\Ui_f\hpp\defineResinclDesign.inc"
@@ -224,10 +236,11 @@ switch _mode do {
 	case "customInit":{
 
 		_display = _this select 0;
-		["ReplaceBaseItems",[_display]] call  jna_fnc_arsenal;
-		["customEvents",[_display]] call  jna_fnc_arsenal;
-		["CreateListAll", [_display]] call  jna_fnc_arsenal;
+		["ReplaceBaseItems",[_display]] call jna_fnc_arsenal;
+		["customEvents",[_display]] call jna_fnc_arsenal;
+		["CreateListAll", [_display]] call jna_fnc_arsenal;
 		['showMessage',[_display,"Jeroen (Not) Limited Arsenal"]] call jna_fnc_arsenal;
+		["HighlightMissingIcons",[_display]] call jna_fnc_arsenal;
 
 		["jna_fnc_arsenal"] call BIS_fnc_endLoadingScreen;
 	};
@@ -404,57 +417,13 @@ switch _mode do {
 
 
 		//add current selected items
-		_inventory_player = switch _index do {
-			case IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON: {
-				primaryWeapon player;
-			};
-			case IDC_RSCDISPLAYARSENAL_TAB_SECONDARYWEAPON: {
-				secondaryweapon player;
-			};
-			case IDC_RSCDISPLAYARSENAL_TAB_HANDGUN: {
-				handgunweapon player;
-			};
-			case IDC_RSCDISPLAYARSENAL_TAB_UNIFORM: {
-				uniform player;
-			};
-			case IDC_RSCDISPLAYARSENAL_TAB_VEST: {
-				vest player;
-			};
-			case IDC_RSCDISPLAYARSENAL_TAB_BACKPACK: {
-				backPack player;
-			};
-			case IDC_RSCDISPLAYARSENAL_TAB_HEADGEAR: {
-				headgear player;
-			};
-			case IDC_RSCDISPLAYARSENAL_TAB_GOGGLES: {
-				goggles player;
-			};
-			case IDC_RSCDISPLAYARSENAL_TAB_NVGS: {
-				hmd player;
-			};
-			case IDC_RSCDISPLAYARSENAL_TAB_BINOCULARS: {
-				binocular player;
-			};
-			case IDC_RSCDISPLAYARSENAL_TAB_MAP;
-			case IDC_RSCDISPLAYARSENAL_TAB_GPS;
-			case IDC_RSCDISPLAYARSENAL_TAB_RADIO;
-			case IDC_RSCDISPLAYARSENAL_TAB_COMPASS;
-			case IDC_RSCDISPLAYARSENAL_TAB_WATCH:{
-				_return = "";
-				{
-					if(_index == [_x,[_index]] call jna_fnc_ItemType)exitwith{_return = _x;};
-				}foreach assignedItems player;
-				_return;
-			};
-		};
+		_inventory_player = ["ListCurSel",[_index]] call jna_fnc_arsenal;
 		["UpdateItemAdd",[_index,_inventory_player,0]] call jna_fnc_arsenal;
 
 
 		//TODO sort (add select current item to sort?)
 
-		["ListSelectCurrent",[_display,_index,_inventory_player]] call jna_fnc_arsenal;
-
-
+		["ListSelectCurrent",[_display,_index]] call jna_fnc_arsenal;
 
 		//show selected, disable others
 		{
@@ -820,79 +789,75 @@ switch _mode do {
 	};
 
 	///////////////////////////////////////////////////////////////////////////////////////////
+	case "ListCurSel":{
+		_index = _this select 0;
+		_return = switch _index do {
+			case IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON: {
+				primaryWeapon player;
+			};
+			case IDC_RSCDISPLAYARSENAL_TAB_SECONDARYWEAPON: {
+				secondaryweapon player;
+			};
+			case IDC_RSCDISPLAYARSENAL_TAB_HANDGUN: {
+				handgunweapon player;
+			};
+			case IDC_RSCDISPLAYARSENAL_TAB_UNIFORM: {
+				uniform player;
+			};
+			case IDC_RSCDISPLAYARSENAL_TAB_VEST: {
+				vest player;
+			};
+			case IDC_RSCDISPLAYARSENAL_TAB_BACKPACK: {
+				backPack player;
+			};
+			case IDC_RSCDISPLAYARSENAL_TAB_HEADGEAR: {
+				headgear player;
+			};
+			case IDC_RSCDISPLAYARSENAL_TAB_GOGGLES: {
+				goggles player;
+			};
+			case IDC_RSCDISPLAYARSENAL_TAB_NVGS: {
+				hmd player;
+			};
+			case IDC_RSCDISPLAYARSENAL_TAB_BINOCULARS: {
+				binocular player;
+			};
+			case IDC_RSCDISPLAYARSENAL_TAB_RADIO:{
+				_item = "";
+				{
+					if(_index == [_x,[_index]] call jna_fnc_ItemType)exitwith{_item = _x};
+
+					//TFAR FIX
+					_radioName = getText(configfile >> "CfgWeapons" >> _x >> "tf_parent");
+					if!(_radioName isEqualTo "")exitWith{_item = _radioName};
+
+				}foreach assignedItems player;
+				_item;
+			};
+			case IDC_RSCDISPLAYARSENAL_TAB_MAP;
+			case IDC_RSCDISPLAYARSENAL_TAB_GPS;
+			case IDC_RSCDISPLAYARSENAL_TAB_COMPASS;
+			case IDC_RSCDISPLAYARSENAL_TAB_WATCH:{
+				_return1 = "";
+				{
+					if(_index == [_x,[_index]] call jna_fnc_ItemType)exitwith{_return1 = _x};
+				}foreach assignedItems player;
+				_return1;
+			};
+		};
+		_return;
+	};
+
+	///////////////////////////////////////////////////////////////////////////////////////////
 	case "ListSelectCurrent":{
 		_display =  _this select 0;
 		_index = _this select 1;
 		_item = _this select 2;
 		_ctrlList = _display displayctrl (IDC_RSCDISPLAYARSENAL_LIST + _index);
 
+
 		if(isnil "_item")then{
-			_item = switch _index do {
-				case IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON: {
-					primaryWeapon player;
-				};
-				case IDC_RSCDISPLAYARSENAL_TAB_SECONDARYWEAPON: {
-					secondaryweapon player;
-				};
-				case IDC_RSCDISPLAYARSENAL_TAB_HANDGUN: {
-					handgunweapon player;
-				};
-				case IDC_RSCDISPLAYARSENAL_TAB_UNIFORM: {
-					uniform player;
-				};
-				case IDC_RSCDISPLAYARSENAL_TAB_VEST: {
-					vest player;
-				};
-				case IDC_RSCDISPLAYARSENAL_TAB_BACKPACK: {
-					backPack player;
-				};
-				case IDC_RSCDISPLAYARSENAL_TAB_HEADGEAR: {
-					headgear player;
-				};
-				case IDC_RSCDISPLAYARSENAL_TAB_GOGGLES: {
-					goggles player;
-				};
-				case IDC_RSCDISPLAYARSENAL_TAB_NVGS: {
-					hmd player;
-				};
-				case IDC_RSCDISPLAYARSENAL_TAB_BINOCULARS: {
-					binocular player;
-				};
-				case IDC_RSCDISPLAYARSENAL_TAB_MAP;
-				case IDC_RSCDISPLAYARSENAL_TAB_GPS;
-				case IDC_RSCDISPLAYARSENAL_TAB_RADIO;
-				case IDC_RSCDISPLAYARSENAL_TAB_COMPASS;
-				case IDC_RSCDISPLAYARSENAL_TAB_WATCH:{
-					_return = "";
-					{
-						if(_index == [_x,[_index]] call jna_fnc_ItemType)exitwith{_return = _x;};
-					}foreach assignedItems player;
-					_return;
-				};
-				case IDC_RSCDISPLAYARSENAL_TAB_ITEMOPTIC;
-				case IDC_RSCDISPLAYARSENAL_TAB_ITEMACC;
-				case IDC_RSCDISPLAYARSENAL_TAB_ITEMMUZZLE;
-				case IDC_RSCDISPLAYARSENAL_TAB_ITEMBIPOD:{
-					_items = switch true do {
-						case (ctrlenabled (_display displayctrl (IDC_RSCDISPLAYARSENAL_LIST + IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON))): {primaryWeaponItems player};
-						case (ctrlenabled (_display displayctrl (IDC_RSCDISPLAYARSENAL_LIST + IDC_RSCDISPLAYARSENAL_TAB_SECONDARYWEAPON))): {secondaryWeaponItems player};
-						case (ctrlenabled (_display displayctrl (IDC_RSCDISPLAYARSENAL_LIST + IDC_RSCDISPLAYARSENAL_TAB_HANDGUN))): {handgunItems player};
-						default {""};
-					};
-
-					_accIndex = [
-						IDC_RSCDISPLAYARSENAL_TAB_ITEMMUZZLE,
-						IDC_RSCDISPLAYARSENAL_TAB_ITEMACC,
-						IDC_RSCDISPLAYARSENAL_TAB_ITEMOPTIC,
-						IDC_RSCDISPLAYARSENAL_TAB_ITEMBIPOD
-					] find _index;
-
-					_items select _accIndex;
-				};
-				default{
-					"";
-				};
-			};
+			_item = ["ListCurSel",[_index]] call jna_fnc_arsenal;
 		};
 
 		for "_l" from 0 to (lbsize _ctrlList - 1) do {
@@ -1696,13 +1661,24 @@ switch _mode do {
 			case IDC_RSCDISPLAYARSENAL_TAB_COMPASS;
 			case IDC_RSCDISPLAYARSENAL_TAB_WATCH: {
 				_oldItem = "";
+				_OldItemUnequal = "";
 				{
-					if(_index == ([_x,[_index]] call jna_fnc_ItemType))exitwith{_oldItem = _x;};
+					if(_index == ([_x,[_index]] call jna_fnc_ItemType))exitwith{
+						_oldItem = _x;
+						_OldItemUnequal = _x;
+					};
+
+					//TFAR FIX
+					_radioName = getText(configfile >> "CfgWeapons" >> _x >> "tf_parent");
+					if!(_radioName isEqualTo "")exitWith{
+						_oldItem = _radioName;
+						_OldItemUnequal = _x
+					};
 				}foreach assignedItems player;
 
 				if (_oldItem != _item) then {
-					player unassignitem _oldItem;
-					player removeitem _oldItem;
+					player unassignitem _OldItemUnequal;
+					player removeitem _OldItemUnequal;
 					[_index, _oldItem] remoteExecCall ["jna_fnc_addItem_Arsanal"];
 					if (_item != "") then {
 						player linkitem _item;
@@ -1782,6 +1758,7 @@ switch _mode do {
 		};
 
 		["updateItemInfo",[ _display,_index]] call jna_fnc_arsenal;
+		["HighlightMissingIcons",[_display]] call jna_fnc_arsenal;
 	};
 
 	///////////////////////////////////////////////////////////////////////////////////////////
@@ -2211,6 +2188,24 @@ switch _mode do {
 		};
 	};
 
+	///////////////////////////////////////////////////////////////////////////////////////////
+	case "HighlightMissingIcons": {
+		_display = _this select 0;
+
+		{
+			_index = _x;
+			_item = ["ListCurSel",[_index]] call jna_fnc_arsenal;
+			_ctrlTab = _display displayctrl(IDC_RSCDISPLAYARSENAL_TAB + _index);
+
+			//check if some item was selected
+			if(_item isEqualTo "")then{
+				_ctrlTab ctrlSetTextColor [1,0.3,0.3,1];
+			}else{
+				_ctrlTab ctrlSetTextColor [1,1,1,1];
+			};
+		} forEach [IDCS_LEFT];
+	};
+
 	/////////////////////////////////////////////////////////////////////////////////////////// event
 	case "KeyDown": {
 		_display = _this select 0;
@@ -2261,15 +2256,10 @@ switch _mode do {
 			case (_key == DIK_7);
 			case (_key == DIK_8);
 			case (_key == DIK_9);
-			case (_key == DIK_0): {
-				_return = true;
-				_ctrlTab = _display displayctrl (IDC_RSCDISPLAYARSENAL_LIST + IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON);
-				_ctrlTab lbSetCurSel  30;
-			};
+			case (_key == DIK_0);
 
 			//--- Tab to browse tabs
 			case (_key == DIK_TAB): {
-
 			};
 
 
@@ -2426,15 +2416,14 @@ switch _mode do {
 				_inventory = _ctrlTemplateValue lnbtext [lnbcurselrow _ctrlTemplateValue,0];
 				_inventory call jna_fnc_loadinventory;
 
-
-
 				{
 					_ctrlList = _display displayctrl (IDC_RSCDISPLAYARSENAL_LIST + _x);
 					if(ctrlenabled _ctrlList) exitWith {
 						["TabSelectLeft", [_display, _x]] call jna_fnc_arsenal;
 					};
-				} forEach [IDCS_LEFT];
 
+				} forEach [IDCS_LEFT];
+				["HighlightMissingIcons",[_display]] call jna_fnc_arsenal;
 
 			} else {
 				_hideTemplate = false;
