@@ -139,6 +139,16 @@ _assignedItems_old = assignedItems player + [headgear player] + [goggles player]
 		IDC_RSCDISPLAYARSENAL_TAB_WATCH
 	]] call jna_fnc_itemType;
 	player unlinkItem _item;
+
+	//TFAR fix
+	if(_index == -1)then{
+		_radioName = getText(configfile >> "CfgWeapons" >> _item >> "tf_parent");
+		if!(_radioName isEqualTo "")then{
+			_item =_radioName;
+			_index = IDC_RSCDISPLAYARSENAL_TAB_RADIO;
+		};
+	};
+
 	[_arrayPlaced,_index,_item,_amount]call _addToArray;
 } forEach _assignedItems_old - [""];
 
@@ -223,6 +233,15 @@ _assignedItems = ((_inventory select 9) + [_inventory select 3] + [_inventory se
 		IDC_RSCDISPLAYARSENAL_TAB_COMPASS,
 		IDC_RSCDISPLAYARSENAL_TAB_WATCH
 	]] call jna_fnc_itemType;
+
+	//TFAR fix
+	if(_index == -1)then{
+		_radioName = getText(configfile >> "CfgWeapons" >> _item >> "tf_parent");
+		if!(_radioName isEqualTo "")then{
+			_item =_radioName;
+			_index = IDC_RSCDISPLAYARSENAL_TAB_RADIO;
+		};
+	};
 
 
 	if(_index == -1) then {
@@ -455,18 +474,23 @@ _containers = [_uniform,_vest,_backpack];
 _arrayAdd = [_arrayPlaced, _arrayTaken] call _subtractArrays; //remove items that where not added
 _arrayRemove = [_arrayTaken, _arrayPlaced] call _subtractArrays;
 
-_arrayAdd call jna_fnc_addItems_Arsanal;
+[_arrayAdd] call jna_fnc_addItems_Arsanal;
 _arrayRemove call jna_fnc_removeItems_Arsanal;
 
 //create text for missing and replaced items
 //we could use ingame names here but some items might not be ingame(disabled mod), but if you feel like it you can still add it.
 
+_reportTotal = "";
 _reportReplaced = "";
 {
 	_nameNew = _x select 0;
 	_nameOld = _x select 1;
-	_reportReplaced = _reportReplaced + _nameOld + " replaced with " + _nameNew + "\n";
+	_reportReplaced = _reportReplaced + _nameOld + " instead of " + _nameNew + "\n";
 } forEach _arrayReplaced;
+
+if!(_reportReplaced isEqualTo "")then{
+	_reportTotal = ("I keep this items because i couldn't find the other ones:\n" + _reportReplaced+"\n");
+};
 
 _reportMissing = "";
 {
@@ -475,8 +499,10 @@ _reportMissing = "";
 	_reportMissing = _reportMissing + _name + " (" + (str _amount) + "x)\n";
 }forEach _arrayMissing;
 
-_reportTotal = _reportReplaced + _reportMissing;
-if(_reportTotal != "")then{
-	_reportTotal = ("I couldn't find the following items:\n" + _reportTotal);
+if!(_reportMissing isEqualTo "")then{
+	_reportTotal = (_reportTotal+"I couldn't find the following items:\n" + _reportMissing+"\n");
+};
+
+if!(_reportTotal isEqualTo "")then{
 	titleText[_reportTotal, "PLAIN"];
 };
